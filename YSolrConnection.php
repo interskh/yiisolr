@@ -179,6 +179,21 @@ class YSolrConnection extends CApplicationComponent
 	}
 
 	/**
+	 * Delete all documents matching the given query
+	 *
+	 * @param string $query
+	 * @return none
+	 */
+	public function delete($query)
+	{
+		$solrQuery = new SolrQuery();
+		$solrQuery->setQuery($query);
+		$this->_solrClient->deleteByQuery($solrQuery);
+		$this->_solrClient->commit();
+	}
+
+
+	/**
 	 * handles the solr update response
 	 * @param SolrUpdateResponse class 
 	 */
